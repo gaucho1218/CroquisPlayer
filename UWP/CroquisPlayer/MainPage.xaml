@@ -10,5 +10,22 @@
 
     <Grid>
 
+        <SplitView IsPaneOpen="True" PanePlacement="Right">
+            <RelativePanel>
+                
+            </RelativePanel>
+            
+            <SplitView.Pane>
+                <StackPanel Name="SettingPanel" Orientation="Vertical" Margin="10">
+                    <TextBlock Text="Time Interval"/>
+                    <Slider/>
+                    
+                    <TextBlock Text="Break Interval" Margin="0,10,0,0"/>
+                    <Slider/>
+
+                    <Button Content="Start" Width="{Binding ElementName=SettingPanel, Path=ActualWidth}"/>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
     </Grid>
 </Page>
