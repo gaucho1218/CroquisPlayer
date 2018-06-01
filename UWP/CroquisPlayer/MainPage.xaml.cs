@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,6 +23,8 @@ namespace CroquisPlayer
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private ObservableCollection<Button> dataCollection;
+
         public MainPage()
         {
             this.InitializeComponent();

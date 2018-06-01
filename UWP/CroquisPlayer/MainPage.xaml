@@ -9,16 +9,29 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
         <SplitView IsPaneOpen="True" PanePlacement="Right" DisplayMode="Inline">
-            <RelativePanel>
-                <Button Width="100" Height="100">
-                    <StackPanel>
-                        <SymbolIcon Symbol="Add"/>
-                        <TextBlock x:Uid="AddText" Text="" Margin="0,10,0,0"/>
-                    </StackPanel>
-                </Button>
-            </RelativePanel>
+
+            <ItemsControl Name="ItemCtrl" ItemsSource="{x:Bind dataCollection}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VariableSizedWrapGrid Orientation="Horizontal" Height="Auto" Width="Auto"
+                                               ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Auto"
+                                               ScrollViewer.HorizontalScrollMode="Disabled"
+                                               Margin="10"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+            
+            <!--<ScrollViewer VerticalScrollMode="Auto">
+                <VariableSizedWrapGrid Margin="10" Orientation="Horizontal">
+                    <Button Width="100" Height="100" Margin="2">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Add"/>
+                            <TextBlock x:Uid="AddText" Text="" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </VariableSizedWrapGrid>
+            </ScrollViewer>-->
             
             <SplitView.Pane>
                 <StackPanel Name="SettingPanel" Orientation="Vertical" Margin="10">
