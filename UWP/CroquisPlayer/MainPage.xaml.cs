@@ -96,5 +96,20 @@ namespace CroquisPlayer
                 m_tempImage = null;
             }
         }
+
+        private void ImgButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+
+            foreach (Button target in dataCollection)
+            {
+                if (button == target)
+                {
+                    dataCollection.Remove(target);
+                    break;
+                }
+
+            }
+        }
     }
 }
