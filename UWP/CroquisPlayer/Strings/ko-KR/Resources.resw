@@ -129,7 +129,7 @@
     <value>시작</value>
     <comment>Content for Start Button</comment>
   </data>
-  <data name="AddText.Text" xml:space="preserve">
+  <data name="AddText" xml:space="preserve">
     <value>추가</value>
     <comment>Add Button Text</comment>
   </data>

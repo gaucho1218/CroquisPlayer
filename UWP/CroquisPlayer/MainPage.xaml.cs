@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -28,6 +29,30 @@ namespace CroquisPlayer
         public MainPage()
         {
             this.InitializeComponent();
+
+            dataCollection = new ObservableCollection<Button>();
+
+            {
+                Button btn = new Button();
+                btn.Margin = new Thickness(2);
+                btn.Width = 100;
+                btn.Height = 100;
+
+                StackPanel stackPanel = new StackPanel();
+                SymbolIcon symbolIcon = new SymbolIcon(Symbol.Add);
+                TextBlock textBlock = new TextBlock();
+
+                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                textBlock.Text = resourceLoader.GetString("AddText");
+                textBlock.Margin = new Thickness(0, 10, 0, 0);
+
+                stackPanel.Children.Add(symbolIcon);
+                stackPanel.Children.Add(textBlock);
+
+                btn.Content = stackPanel;
+
+                dataCollection.Add(btn);
+            }
         }
 
         private void TimeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

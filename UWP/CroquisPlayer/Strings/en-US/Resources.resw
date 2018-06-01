@@ -129,9 +129,8 @@
     <value>Start</value>
     <comment>Content for Start Button</comment>
   </data>
-  <data name="AddText.Text" xml:space="preserve">
+  <data name="AddText" xml:space="preserve">
     <value>Add</value>
-    <comment>Add Button Text</comment>
   </data>
   <data name="BMinText.Text" xml:space="preserve">
     <value>Min</value>
