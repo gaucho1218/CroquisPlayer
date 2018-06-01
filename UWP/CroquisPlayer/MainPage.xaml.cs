@@ -121,17 +121,18 @@ namespace CroquisPlayer
 
             await newView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
+
                 Frame frame = new Frame();
                 frame.Navigate(typeof(ShowPage), null);
                 Window.Current.Content = frame;
                 Window.Current.Activate();
 
                 newViewId = ApplicationView.GetForCurrentView().Id;
-                ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             });
 
             bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
-
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
         }
     }
 }
