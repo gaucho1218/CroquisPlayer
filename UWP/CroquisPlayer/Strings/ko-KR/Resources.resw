@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BreakInterval.Text" xml:space="preserve">
-    <value>Break time</value>
+    <value>휴식 시간</value>
     <comment>Break Interval</comment>
   </data>
   <data name="TimeInterval.Text" xml:space="preserve">
-    <value>Show time</value>
+    <value>보여주는 시간</value>
     <comment>Time Interval</comment>
   </data>
   <data name="StartButton.Content" xml:space="preserve">
-    <value>Start</value>
+    <value>시작</value>
     <comment>Content for Start Button</comment>
   </data>
 </root>
