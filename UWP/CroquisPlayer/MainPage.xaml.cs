@@ -4,9 +4,11 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -108,8 +110,28 @@ namespace CroquisPlayer
                     dataCollection.Remove(target);
                     break;
                 }
-
             }
+        }
+
+        private async void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            CoreApplicationView newView = CoreApplication.CreateNewView();
+
+            int newViewId = 0;
+
+            await newView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                Frame frame = new Frame();
+                frame.Navigate(typeof(ShowPage), null);
+                Window.Current.Content = frame;
+                Window.Current.Activate();
+
+                newViewId = ApplicationView.GetForCurrentView().Id;
+                ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
+            });
+
+            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+
         }
     }
 }
