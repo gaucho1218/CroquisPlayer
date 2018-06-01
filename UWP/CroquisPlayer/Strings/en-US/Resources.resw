@@ -117,11 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="s" xml:space="preserve">
-    <value />
+  <data name="BreakInterval.Text" xml:space="preserve">
+    <value>Break Interval</value>
+    <comment>Break Interval</comment>
   </data>
   <data name="TimeInterval.Text" xml:space="preserve">
     <value>Time Interval</value>
     <comment>Time Interval</comment>
+  </data>
+  <data name="StartButton.Content" xml:space="preserve">
+    <value>Start</value>
+    <comment>Content for Start Button</comment>
   </data>
 </root>

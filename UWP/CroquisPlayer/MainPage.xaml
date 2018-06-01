@@ -20,10 +20,10 @@
                     <TextBlock x:Uid="TimeInterval" Text=""/>
                     <Slider/>
                     
-                    <TextBlock Text="Break Interval" Margin="0,10,0,0"/>
+                    <TextBlock x:Uid="BreakInterval" Text="" Margin="0,10,0,0"/>
                     <Slider/>
 
-                    <Button Content="Start" Background="Green" Width="{Binding ElementName=SettingPanel, Path=ActualWidth}"/>
+                    <Button x:Uid="StartButton" Content="" Background="Green" Width="{Binding ElementName=SettingPanel, Path=ActualWidth}"/>
                 </StackPanel>
             </SplitView.Pane>
         </SplitView>
