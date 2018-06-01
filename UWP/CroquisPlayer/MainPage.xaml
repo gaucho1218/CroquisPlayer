@@ -10,7 +10,7 @@
 
     <Grid>
 
-        <SplitView IsPaneOpen="True" PanePlacement="Right">
+        <SplitView IsPaneOpen="True" PanePlacement="Right" DisplayMode="Inline">
             <RelativePanel>
                 <Button Width="100" Height="100">
                     <StackPanel>
