@@ -25,6 +25,7 @@ namespace CroquisPlayer
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Button> dataCollection;
+        private Image m_tempImage;
 
         public MainPage()
         {
@@ -73,6 +74,26 @@ namespace CroquisPlayer
                     //! load file and add to list
                     makeImageButton(file);
                 }
+            }
+        }
+
+        private void ImgButton_Entered(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+
+            m_tempImage = button.Content as Image;
+            SymbolIcon icon = new SymbolIcon(Symbol.Delete);
+            button.Content = icon;
+        }
+
+        private void ImgButton_Exited(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+
+            if (m_tempImage != null)
+            {
+                button.Content = m_tempImage;
+                m_tempImage = null;
             }
         }
     }
