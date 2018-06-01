@@ -32,27 +32,7 @@ namespace CroquisPlayer
 
             dataCollection = new ObservableCollection<Button>();
 
-            {
-                Button btn = new Button();
-                btn.Margin = new Thickness(2);
-                btn.Width = 100;
-                btn.Height = 100;
-
-                StackPanel stackPanel = new StackPanel();
-                SymbolIcon symbolIcon = new SymbolIcon(Symbol.Add);
-                TextBlock textBlock = new TextBlock();
-
-                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
-                textBlock.Text = resourceLoader.GetString("AddText");
-                textBlock.Margin = new Thickness(0, 10, 0, 0);
-
-                stackPanel.Children.Add(symbolIcon);
-                stackPanel.Children.Add(textBlock);
-
-                btn.Content = stackPanel;
-
-                dataCollection.Add(btn);
-            }
+            setDataCollection();
         }
 
         private void TimeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -74,6 +54,26 @@ namespace CroquisPlayer
         {
             double seconds = BreakSlider.Value;
             BreakSec.Text = seconds.ToString();
+        }
+
+        private async void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+            picker.FileTypeFilter.Add(".jpg");
+            picker.FileTypeFilter.Add(".jpeg");
+            picker.FileTypeFilter.Add(".png");
+
+            var files = await picker.PickMultipleFilesAsync();
+            if (files.Count > 0)
+            {
+                foreach (Windows.Storage.StorageFile file in files)
+                {
+                    //! load file and add to list
+                    makeImageButton(file);
+                }
+            }
         }
     }
 }
