@@ -19,13 +19,13 @@
                 <StackPanel Name="SettingPanel" Orientation="Vertical" Margin="10">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Uid="TimeInterval" Text=""/>
-                        <TextBlock Name="TimeMin" Text="0" Margin="10,0,0,0"/>
+                        <TextBlock Name="TimeMin" Text="1" Margin="10,0,0,0"/>
                         <TextBlock x:Uid="TMinText" Text="" Margin="5,0,0,0"/>
-                        <TextBlock Name="TimeSec" Text="15" Margin="5,0,0,0"/>
+                        <TextBlock Name="TimeSec" Text="30" Margin="5,0,0,0"/>
                         <TextBlock x:Uid="TSecText" Text="" Margin="5,0,0,0"/>
                     </StackPanel>
                     <Slider Name="TimeSlider" Minimum="15" Maximum="300" StepFrequency="5"
-                            TickFrequency="5" TickPlacement="Outside" Value="15"/>
+                            TickFrequency="5" TickPlacement="Outside" Value="90" ValueChanged="TimeSlider_ValueChanged"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock x:Uid="BreakInterval" Text=""/>
@@ -33,7 +33,7 @@
                         <TextBlock x:Uid="BSecText" Text="" Margin="5,0,0,0"/>
                     </StackPanel>
                     <Slider Name="BreakSlider" Minimum="5" Maximum="30" StepFrequency="5"
-                            TickFrequency="5" TickPlacement="Outside" Value="10"/>
+                            TickFrequency="5" TickPlacement="Outside" Value="10" ValueChanged="BreakSlider_ValueChanged"/>
 
                     <Button x:Uid="StartButton" Content="" Background="Green" Width="{Binding ElementName=SettingPanel, Path=ActualWidth}"/>
                 </StackPanel>

@@ -26,5 +26,26 @@ namespace CroquisPlayer
         {
             this.InitializeComponent();
         }
+
+        private void TimeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            double seconds = TimeSlider.Value;
+
+            if (seconds >= 60)
+            {
+                //! handle minutes
+                double min = Math.Truncate((seconds / 60));
+                TimeMin.Text = min.ToString();
+                seconds -= (min * 60);
+            }
+
+            TimeSec.Text = seconds.ToString();
+        }
+
+        private void BreakSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            double seconds = BreakSlider.Value;
+            BreakSec.Text = seconds.ToString();
+        }
     }
 }
