@@ -131,6 +131,7 @@
   </data>
   <data name="AddText" xml:space="preserve">
     <value>Add</value>
+    <comment>Add button text</comment>
   </data>
   <data name="BMinText.Text" xml:space="preserve">
     <value>Min</value>
@@ -147,5 +148,9 @@
   <data name="TSecText.Text" xml:space="preserve">
     <value>Sec</value>
     <comment>Time Interval Second</comment>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>Please add image</value>
+    <comment>message when press start button with no image</comment>
   </data>
 </root>

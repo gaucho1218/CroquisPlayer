@@ -149,4 +149,8 @@
     <value>초</value>
     <comment>Time Interval Second</comment>
   </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>이미지를 추가해주세요</value>
+    <comment>message when press start button with no image</comment>
+  </data>
 </root>

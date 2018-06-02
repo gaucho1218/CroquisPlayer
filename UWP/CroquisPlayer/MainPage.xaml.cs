@@ -9,6 +9,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -120,24 +121,33 @@ namespace CroquisPlayer
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            CoreApplicationView newView = CoreApplication.CreateNewView();
-
-            int newViewId = 0;
-
-            await newView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            if (dataCollection.Count > 1)
             {
-                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
+                CoreApplicationView newView = CoreApplication.CreateNewView();
 
-                Frame frame = new Frame();
-                frame.Navigate(typeof(ShowPage), null);
-                Window.Current.Content = frame;
-                Window.Current.Activate();
+                int newViewId = 0;
 
-                newViewId = ApplicationView.GetForCurrentView().Id;
-            });
+                await newView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
 
-            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+                    Frame frame = new Frame();
+                    frame.Navigate(typeof(ShowPage), null);
+                    Window.Current.Content = frame;
+                    Window.Current.Activate();
+
+                    newViewId = ApplicationView.GetForCurrentView().Id;
+                });
+
+                bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+            }
+            else
+            {
+                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                var dialog = new MessageDialog(resourceLoader.GetString("NoImage"));
+                await dialog.ShowAsync();
+            }
         }
     }
 }
