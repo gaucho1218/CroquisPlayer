@@ -51,7 +51,7 @@ namespace CroquisPlayer
 
             //! TODO change this to instruction mode
 
-            //! start show timer
+            //! test start show timer
             ShowImage();
             m_ShowTimer.Start();
         }

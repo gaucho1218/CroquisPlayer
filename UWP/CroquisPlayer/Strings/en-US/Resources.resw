@@ -149,8 +149,16 @@
     <value>Sec</value>
     <comment>Time Interval Second</comment>
   </data>
+  <data name="ESCMessage" xml:space="preserve">
+    <value>Press ESC to escape</value>
+    <comment>Message for pressing ESC</comment>
+  </data>
   <data name="NoImage" xml:space="preserve">
     <value>Please add image</value>
     <comment>message when press start button with no image</comment>
+  </data>
+  <data name="SpaceMessage" xml:space="preserve">
+    <value>Press Space to pause</value>
+    <comment>Message for pressing Space</comment>
   </data>
 </root>

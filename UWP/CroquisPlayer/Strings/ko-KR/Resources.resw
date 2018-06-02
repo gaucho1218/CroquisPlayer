@@ -149,8 +149,16 @@
     <value>초</value>
     <comment>Time Interval Second</comment>
   </data>
+  <data name="ESCMessage" xml:space="preserve">
+    <value>ESC를 눌러서 종료</value>
+    <comment>Message for pressing ESC</comment>
+  </data>
   <data name="NoImage" xml:space="preserve">
     <value>이미지를 추가해주세요</value>
     <comment>message when press start button with no image</comment>
+  </data>
+  <data name="SpaceMessage" xml:space="preserve">
+    <value>스페이스를 눌러서 일시정지</value>
+    <comment>Message for pressing Space</comment>
   </data>
 </root>
