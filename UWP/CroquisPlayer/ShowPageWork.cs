@@ -11,6 +11,7 @@ namespace CroquisPlayer
         private DispatcherTimer m_ShowTimer;
         private DispatcherTimer m_BreakTimer;
         private DispatcherTimer m_CountDownTimer;
+        private DispatcherTimer m_InstructionTimer;
 
         private int m_Index;
         private int m_CountDown;
@@ -49,11 +50,49 @@ namespace CroquisPlayer
             m_CountDownTimer.Interval = new TimeSpan(0, 0, 1);
             m_CountDown = (int)MainPage.Current.m_BreakTime;
 
-            //! TODO change this to instruction mode
+            //! set instruction timer
+            m_InstructionTimer = new DispatcherTimer();
+            m_InstructionTimer.Tick += InstructionTimeEnd;
+            m_InstructionTimer.Interval = TimeSpan.FromSeconds(3);
 
-            //! test start show timer
+            //! set instruction and start timer
+            {
+                ShowRPanel.Children.Clear();
+
+                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+
+                StackPanel stackPanel = new StackPanel();
+                stackPanel.Orientation = Orientation.Vertical;
+                stackPanel.HorizontalAlignment = HorizontalAlignment.Center;
+                stackPanel.VerticalAlignment = VerticalAlignment.Center;
+
+                TextBlock escBlock = new TextBlock();
+                escBlock.FontSize = 100;
+                escBlock.Text = resourceLoader.GetString("ESCMessage");
+                stackPanel.Children.Add(escBlock);
+
+                TextBlock spaceBlock = new TextBlock();
+                spaceBlock.FontSize = 100;
+                spaceBlock.Text = resourceLoader.GetString("SpaceMessage");
+                stackPanel.Children.Add(spaceBlock);
+
+                ShowRPanel.Children.Add(stackPanel);
+
+                m_InstructionTimer.Start();
+            }
+        }
+
+        private void InstructionTimeEnd(object sender, object e)
+        {
+            m_InstructionTimer.Stop();
+
             ShowImage();
             m_ShowTimer.Start();
+        }
+
+        private void StartInstruction()
+        {
+
         }
 
         private void ShowTimeEnd(object sender, object e)
