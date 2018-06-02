@@ -56,6 +56,8 @@ namespace CroquisPlayer
                 TimeMin.Text = min.ToString();
                 seconds -= (min * 60);
             }
+            else
+                TimeMin.Text = "0";
 
             TimeSec.Text = seconds.ToString();
         }
