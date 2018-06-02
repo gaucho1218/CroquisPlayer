@@ -8,6 +8,7 @@ using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,14 +27,17 @@ namespace CroquisPlayer
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private ObservableCollection<Button> dataCollection;
+        public static MainPage Current;
+        public ObservableCollection<Button> dataCollection;
         private Image m_tempImage;
 
         public MainPage()
         {
             this.InitializeComponent();
+            Current = this;
 
             dataCollection = new ObservableCollection<Button>();
+            m_Files = new List<StorageFile>();
 
             setDataCollection();
         }
@@ -107,6 +111,7 @@ namespace CroquisPlayer
             {
                 if (button == target)
                 {
+                    m_Files.RemoveAt(dataCollection.IndexOf(button) - 1);
                     dataCollection.Remove(target);
                     break;
                 }

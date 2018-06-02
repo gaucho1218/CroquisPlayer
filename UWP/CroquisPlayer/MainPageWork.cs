@@ -13,6 +13,7 @@ namespace CroquisPlayer
     public sealed partial class MainPage : Page
     {
         private Button m_addButton;
+        public List<StorageFile> m_Files;
 
         private void setDataCollection()
         {
@@ -57,29 +58,29 @@ namespace CroquisPlayer
             if (file != null)
             {
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-            {
+                {
+                    Button button = new Button();
+                    button.Margin = new Thickness(2);
+                    button.Width = 100;
+                    button.Height = 100;
 
-                Button button = new Button();
-                button.Margin = new Thickness(2);
-                button.Width = 100;
-                button.Height = 100;
+                    //! button event
+                    button.PointerEntered += ImgButton_Entered;
+                    button.PointerExited += ImgButton_Exited;
+                    button.Click += ImgButton_Click;
 
-                //! button event
-                button.PointerEntered += ImgButton_Entered;
-                button.PointerExited += ImgButton_Exited;
-                button.Click += ImgButton_Click;
+                    Image image = new Image();
+                    BitmapImage bitmap = new BitmapImage();
 
-                Image image = new Image();
-                BitmapImage bitmap = new BitmapImage();
+                    var stream = await file.OpenReadAsync();
+                    await bitmap.SetSourceAsync(stream);
 
-                var stream = await file.OpenReadAsync();
-                await bitmap.SetSourceAsync(stream);
+                    image.Source = bitmap;
+                    button.Content = image;
 
-                image.Source = bitmap;
-                button.Content = image;
-
-                dataCollection.Add(button);
-            });
+                    m_Files.Add(file);
+                    dataCollection.Add(button);
+                });
             }
         }
     }
