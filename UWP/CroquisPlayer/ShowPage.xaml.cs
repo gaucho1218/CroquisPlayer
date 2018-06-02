@@ -19,6 +19,7 @@ namespace CroquisPlayer
             this.InitializeComponent();
 
             m_CDText = new TextBlock();
+            m_CDText.FontSize = 250;
 
             bPause = false;
             m_Index = 0;
