@@ -46,12 +46,13 @@ namespace CroquisPlayer
             //! set count down timer
             m_CountDownTimer = new DispatcherTimer();
             m_CountDownTimer.Tick += CountDown;
-            m_BreakTimer.Interval = new TimeSpan(0, 0, 1);
+            m_CountDownTimer.Interval = new TimeSpan(0, 0, 1);
             m_CountDown = (int)MainPage.Current.m_BreakTime;
 
             //! TODO change this to instruction mode
 
             //! start show timer
+            ShowImage();
             m_ShowTimer.Start();
         }
 
