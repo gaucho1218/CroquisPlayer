@@ -29,8 +29,10 @@ namespace CroquisPlayer
     public sealed partial class MainPage : Page
     {
         public static MainPage Current;
-        public ObservableCollection<Button> dataCollection;
+        private ObservableCollection<Button> dataCollection;
         private Image m_tempImage;
+        public double m_ShowTime;
+        public double m_BreakTime;
 
         public MainPage()
         {
@@ -123,6 +125,9 @@ namespace CroquisPlayer
         {
             if (dataCollection.Count > 1)
             {
+                m_ShowTime = TimeSlider.Value;
+                m_BreakTime = BreakSlider.Value;
+
                 CoreApplicationView newView = CoreApplication.CreateNewView();
 
                 int newViewId = 0;

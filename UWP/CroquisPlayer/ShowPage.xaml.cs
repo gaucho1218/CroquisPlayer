@@ -1,22 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Storage;
-using Windows.UI.Core;
-using Windows.UI.ViewManagement;
+﻿using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 
 // 빈 페이지 항목 템플릿에 대한 설명은 https://go.microsoft.com/fwlink/?LinkId=234238에 나와 있습니다.
 
@@ -28,12 +12,16 @@ namespace CroquisPlayer
     public sealed partial class ShowPage : Page
     {
         private bool bPause;
+        private TextBlock m_CDText;
 
         public ShowPage()
         {
             this.InitializeComponent();
 
+            m_CDText = new TextBlock();
+
             bPause = false;
+            m_Index = 0;
         }
 
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs e)
@@ -54,25 +42,12 @@ namespace CroquisPlayer
         {
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
 
-            ShowImageAsync();
+            SetupTimer();
         }
 
         private void ShowPage_Unloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.CoreWindow.KeyDown -= CoreWindow_KeyDown;
-        }
-
-        private async System.Threading.Tasks.Task ShowImageAsync()
-        {
-            StorageFile file = MainPage.Current.m_Files[0];
-            BitmapImage bitmap = new BitmapImage();
-            Image image = new Image();
-
-            var stream = await file.OpenReadAsync();
-            await bitmap.SetSourceAsync(stream);
-
-            image.Source = bitmap;
-            ShowRPanel.Children.Add(image);
         }
     }
 }

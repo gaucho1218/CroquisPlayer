@@ -103,6 +103,7 @@
     <Compile Include="ShowPage.xaml.cs">
       <DependentUpon>ShowPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ShowPageWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
