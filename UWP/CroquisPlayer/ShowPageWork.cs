@@ -96,6 +96,7 @@ namespace CroquisPlayer
         private void StartShowTime()
         {
             bShowTime = true;
+
             if (bBeginFromPause == false)
                 ++m_Index;
             else
@@ -103,6 +104,7 @@ namespace CroquisPlayer
             ShowImage();
 
             m_CountDown = (int)MainPage.Current.m_ShowTime;
+            ShowLeftTimeText.Text = m_CountDown.ToString();
 
             m_CountDownTimer.Start();
             m_ShowTimer.Start();
@@ -137,13 +139,13 @@ namespace CroquisPlayer
 
         private void StartBreakTime()
         {
+            //! set break time
+            m_CountDown = (int)MainPage.Current.m_BreakTime;
+
             //! set screen for break time
             ShowRPanel.Children.Clear();
             m_CDText.Text = m_CountDown.ToString();
             ShowRPanel.Children.Add(m_CDText);
-
-            //! set break time
-            m_CountDown = (int)MainPage.Current.m_BreakTime;
 
             //! start break mode
             m_CountDownTimer.Start();
