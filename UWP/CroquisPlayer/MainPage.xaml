@@ -31,16 +31,16 @@
                         <TextBlock Name="TimeSec" Text="30" Margin="5,0,0,0"/>
                         <TextBlock x:Uid="TSecText" Text="" Margin="5,0,0,0"/>
                     </StackPanel>
-                    <Slider Name="TimeSlider" Minimum="5" Maximum="300" StepFrequency="5"
-                            TickFrequency="5" TickPlacement="Outside" Value="5" ValueChanged="TimeSlider_ValueChanged"/>
+                    <Slider Name="TimeSlider" Minimum="60" Maximum="300" StepFrequency="5"
+                            TickFrequency="60" TickPlacement="Outside" Value="180" ValueChanged="TimeSlider_ValueChanged"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock x:Uid="BreakInterval" Text=""/>
                         <TextBlock Name="BreakSec" Text="10" Margin="5,0,0,0"/>
                         <TextBlock x:Uid="BSecText" Text="" Margin="5,0,0,0"/>
                     </StackPanel>
-                    <Slider Name="BreakSlider" Minimum="5" Maximum="30" StepFrequency="5"
-                            TickFrequency="5" TickPlacement="Outside" Value="10" ValueChanged="BreakSlider_ValueChanged"/>
+                    <Slider Name="BreakSlider" Minimum="5" Maximum="10" StepFrequency="1"
+                            TickFrequency="1" TickPlacement="Outside" Value="5" ValueChanged="BreakSlider_ValueChanged"/>
 
                     <Button x:Uid="StartButton" Content="" Background="Green" Width="{Binding ElementName=SettingPanel, Path=ActualWidth}"
                             Click="StartButton_Click"/>
