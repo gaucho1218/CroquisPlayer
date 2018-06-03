@@ -105,6 +105,7 @@ namespace CroquisPlayer
 
             m_CountDown = (int)MainPage.Current.m_ShowTime;
             ShowLeftTimeText.Text = m_CountDown.ToString();
+            ShowLeftTimeText.Visibility = Visibility.Visible;
 
             m_CountDownTimer.Start();
             m_ShowTimer.Start();
@@ -113,6 +114,7 @@ namespace CroquisPlayer
         private void ShowTimeEnd(object sender, object e)
         {
             bShowTime = false;
+            ShowLeftTimeText.Visibility = Visibility.Collapsed;
             m_ShowTimer.Stop();
 
             if (m_Index + 1 < MainPage.Current.m_Files.Count)
