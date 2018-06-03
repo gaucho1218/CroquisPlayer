@@ -11,7 +11,7 @@ namespace CroquisPlayer
         private DispatcherTimer m_ShowTimer;
         private DispatcherTimer m_BreakTimer;
         private DispatcherTimer m_CountDownTimer;
-        private DispatcherTimer m_InstructionTimer;
+        private DispatcherTimer m_Timer;
 
         private int m_Index;
         private int m_CountDown;
@@ -51,9 +51,9 @@ namespace CroquisPlayer
             m_CountDown = (int)MainPage.Current.m_BreakTime;
 
             //! set instruction timer
-            m_InstructionTimer = new DispatcherTimer();
-            m_InstructionTimer.Tick += InstructionTimeEnd;
-            m_InstructionTimer.Interval = TimeSpan.FromSeconds(3);
+            m_Timer = new DispatcherTimer();
+            m_Timer.Tick += InstructionTimeEnd;
+            m_Timer.Interval = TimeSpan.FromSeconds(3);
 
             //! set instruction and start timer
             {
@@ -78,21 +78,16 @@ namespace CroquisPlayer
 
                 ShowRPanel.Children.Add(stackPanel);
 
-                m_InstructionTimer.Start();
+                m_Timer.Start();
             }
         }
 
         private void InstructionTimeEnd(object sender, object e)
         {
-            m_InstructionTimer.Stop();
+            m_Timer.Stop();
 
             ShowImage();
             m_ShowTimer.Start();
-        }
-
-        private void StartInstruction()
-        {
-
         }
 
         private void ShowTimeEnd(object sender, object e)
@@ -139,5 +134,29 @@ namespace CroquisPlayer
             m_ShowTimer.Start();
         }
 
+        private void EnterPauseMode()
+        {
+            //! stop all timer
+            m_ShowTimer.Stop();
+            m_BreakTimer.Stop();
+            m_CountDownTimer.Stop();
+            m_Timer.Stop();
+
+
+            //! add pause symbol
+            ShowRPanel.Children.Clear();
+            SymbolIcon symbol = new SymbolIcon(Symbol.Pause);
+            ShowRPanel.Children.Add(symbol);
+        }
+
+        private void ExitPauseMode()
+        {
+            //! starting from break mode
+            ShowRPanel.Children.Clear();
+            m_CDText.Text = m_CountDown.ToString();
+            ShowRPanel.Children.Add(m_CDText);
+            m_CountDownTimer.Start();
+            m_BreakTimer.Start();
+        }
     }
 }
