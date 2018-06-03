@@ -14,6 +14,7 @@ namespace CroquisPlayer
         private DispatcherTimer m_CountDownTimer;
         private DispatcherTimer m_Timer;
         private bool bBeginFromPause;
+        private bool bShowTime;
 
         private int m_Index;
         private int m_CountDown;
@@ -88,29 +89,34 @@ namespace CroquisPlayer
         {
             m_Timer.Stop();
 
+            bBeginFromPause = true;
+            StartShowTime();
+        }
+
+        private void StartShowTime()
+        {
+            bShowTime = true;
+            if (bBeginFromPause == false)
+                ++m_Index;
+            else
+                bBeginFromPause = false;
             ShowImage();
+
+            m_CountDown = (int)MainPage.Current.m_ShowTime;
+
+            m_CountDownTimer.Start();
             m_ShowTimer.Start();
         }
 
         private void ShowTimeEnd(object sender, object e)
         {
+            bShowTime = false;
             m_ShowTimer.Stop();
 
             if (m_Index + 1 < MainPage.Current.m_Files.Count)
-            {
-                //! set screen for break time
-                ShowRPanel.Children.Clear();
-                m_CDText.Text = m_CountDown.ToString();
-                ShowRPanel.Children.Add(m_CDText);
-
-                //! start break mode
-                m_CountDownTimer.Start();
-                m_BreakTimer.Start();
-            }
+                StartBreakTime();
             else
-            {
                 Window.Current.Close();
-            }
         }
 
         private void CountDown(object sender, object e)
@@ -118,25 +124,36 @@ namespace CroquisPlayer
             if (m_CountDown > 0)
             {
                 --m_CountDown;
-                m_CDText.Text = m_CountDown.ToString();
+                if (bShowTime == true)
+                    ShowLeftTimeText.Text = m_CountDown.ToString();
+                else
+                    m_CDText.Text = m_CountDown.ToString();
             }
             else
             {
                 m_CountDownTimer.Stop();
-                m_CountDown = (int)MainPage.Current.m_BreakTime;
             }
+        }
+
+        private void StartBreakTime()
+        {
+            //! set screen for break time
+            ShowRPanel.Children.Clear();
+            m_CDText.Text = m_CountDown.ToString();
+            ShowRPanel.Children.Add(m_CDText);
+
+            //! set break time
+            m_CountDown = (int)MainPage.Current.m_BreakTime;
+
+            //! start break mode
+            m_CountDownTimer.Start();
+            m_BreakTimer.Start();
         }
 
         private void BreakTimeEnd(object sender, object e)
         {
             m_BreakTimer.Stop();
-
-            if (bBeginFromPause == false)
-                ++m_Index;
-            else
-                bBeginFromPause = false;
-            ShowImage();
-            m_ShowTimer.Start();
+            StartShowTime();
         }
 
         private void EnterPauseMode()
@@ -160,13 +177,8 @@ namespace CroquisPlayer
             PauseIcon.Visibility = Visibility.Collapsed;
 
             //! starting from break mode
-            ShowRPanel.Children.Clear();
-            m_CDText.Text = m_CountDown.ToString();
-            ShowRPanel.Children.Add(m_CDText);
-            m_CountDownTimer.Start();
-            m_BreakTimer.Start();
-
             bBeginFromPause = true;
+            StartBreakTime();
         }
     }
 }
