@@ -10,6 +10,7 @@
     Loaded="ShowPage_Loaded" Unloaded="ShowPage_Unloaded">
 
     <Grid>
+        <FontIcon Glyph="&#xE103;" FontFamily="Segoe MDL2 Assets" FontSize="300" Name="PauseIcon" Visibility="Collapsed"/>
         <RelativePanel Name="ShowRPanel" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Page>

@@ -22,6 +22,7 @@ namespace CroquisPlayer
             m_CDText.FontSize = 250;
 
             bPause = false;
+            bBeginFromPause = false;
             m_Index = 0;
         }
 
@@ -35,7 +36,16 @@ namespace CroquisPlayer
             else if (e.VirtualKey == Windows.System.VirtualKey.Space)
             {
                 //! pause
-                bPause = bPause == true ? false : true;
+                if (bPause == true)
+                {
+                    ExitPauseMode();
+                    bPause = false;
+                }
+                else
+                {
+                    EnterPauseMode();
+                    bPause = true;
+                }
             }
         }
 

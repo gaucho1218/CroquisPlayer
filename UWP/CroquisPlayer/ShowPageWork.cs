@@ -2,6 +2,7 @@
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace CroquisPlayer
@@ -12,6 +13,7 @@ namespace CroquisPlayer
         private DispatcherTimer m_BreakTimer;
         private DispatcherTimer m_CountDownTimer;
         private DispatcherTimer m_Timer;
+        private bool bBeginFromPause;
 
         private int m_Index;
         private int m_CountDown;
@@ -129,7 +131,10 @@ namespace CroquisPlayer
         {
             m_BreakTimer.Stop();
 
-            ++m_Index;
+            if (bBeginFromPause == false)
+                ++m_Index;
+            else
+                bBeginFromPause = false;
             ShowImage();
             m_ShowTimer.Start();
         }
@@ -142,21 +147,26 @@ namespace CroquisPlayer
             m_CountDownTimer.Stop();
             m_Timer.Stop();
 
+            //! reset break timer
+            m_CountDown = (int)MainPage.Current.m_BreakTime;
 
-            //! add pause symbol
+            //! show pause icon
             ShowRPanel.Children.Clear();
-            SymbolIcon symbol = new SymbolIcon(Symbol.Pause);
-            ShowRPanel.Children.Add(symbol);
+            PauseIcon.Visibility = Visibility.Visible;
         }
 
         private void ExitPauseMode()
         {
+            PauseIcon.Visibility = Visibility.Collapsed;
+
             //! starting from break mode
             ShowRPanel.Children.Clear();
             m_CDText.Text = m_CountDown.ToString();
             ShowRPanel.Children.Add(m_CDText);
             m_CountDownTimer.Start();
             m_BreakTimer.Start();
+
+            bBeginFromPause = true;
         }
     }
 }
