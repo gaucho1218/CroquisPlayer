@@ -88,9 +88,17 @@ namespace CroquisPlayer
         private void InstructionTimeEnd(object sender, object e)
         {
             m_Timer.Stop();
+            m_Timer.Tick -= InstructionTimeEnd;
 
             bBeginFromPause = true;
             StartShowTime();
+        }
+
+        private void FinishTimeEnd(object sender, object e)
+        {
+            m_Timer.Stop();
+
+            Window.Current.Close();
         }
 
         private void StartShowTime()
@@ -120,7 +128,19 @@ namespace CroquisPlayer
             if (m_Index + 1 < MainPage.Current.m_Files.Count)
                 StartBreakTime();
             else
-                Window.Current.Close();
+            {
+                m_Timer.Tick += FinishTimeEnd;
+
+                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+
+                ShowRPanel.Children.Clear();
+                TextBlock text = new TextBlock();
+                text.FontSize = 100;
+                text.Text = resourceLoader.GetString("FinishMessage");
+                ShowRPanel.Children.Add(text);
+
+                m_Timer.Start();
+            }
         }
 
         private void CountDown(object sender, object e)

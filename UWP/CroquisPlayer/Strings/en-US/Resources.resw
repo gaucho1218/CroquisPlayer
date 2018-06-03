@@ -161,4 +161,8 @@
     <value>Press Space to pause</value>
     <comment>Message for pressing Space</comment>
   </data>
+  <data name="FinishMessage" xml:space="preserve">
+    <value>Finish</value>
+    <comment>Message for showing finish show</comment>
+  </data>
 </root>

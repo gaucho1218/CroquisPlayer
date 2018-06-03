@@ -11,7 +11,7 @@
 
     <Grid>
         <StackPanel>
-            <TextBlock Name="ShowLeftTimeText" Text="0" HorizontalAlignment="Right" FontSize="30" Margin="10"/>
+            <TextBlock Name="ShowLeftTimeText" Text="0" HorizontalAlignment="Right" FontSize="30" Margin="10" Visibility="Collapsed"/>
         </StackPanel>
         <FontIcon Glyph="&#xE103;" FontFamily="Segoe MDL2 Assets" FontSize="300" Name="PauseIcon" Visibility="Collapsed"/>
         <RelativePanel Name="ShowRPanel" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
