@@ -24,33 +24,46 @@
             </ItemsControl>
             
             <SplitView.Pane>
-                <StackPanel Name="SettingPanel" Orientation="Vertical" Margin="10">
-                    <StackPanel Orientation="Horizontal">
+                <RelativePanel Name="SettingPanel" Margin="10">
+                    <StackPanel Name="ShowPanel" Orientation="Horizontal"
+                                RelativePanel.AlignTopWithPanel="True"
+                                RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                         <TextBlock x:Uid="TimeInterval" Text=""/>
                         <TextBlock Name="TimeMin" Text="1" Margin="10,0,0,0"/>
                         <TextBlock x:Uid="TMinText" Text="" Margin="5,0,0,0"/>
                         <TextBlock Name="TimeSec" Text="30" Margin="5,0,0,0"/>
                         <TextBlock x:Uid="TSecText" Text="" Margin="5,0,0,0"/>
                     </StackPanel>
-                    <Slider Name="TimeSlider" Minimum="60" Maximum="300" StepFrequency="5"
-                            TickFrequency="60" TickPlacement="Outside" Value="180" ValueChanged="TimeSlider_ValueChanged"/>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Slider Name="TimeSlider" Minimum="60" Maximum="300" StepFrequency="5"
+                            TickFrequency="60" TickPlacement="Outside" Value="180" ValueChanged="TimeSlider_ValueChanged"
+                            RelativePanel.Below="ShowPanel"
+                            RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
+
+                    <StackPanel Name="BreakPanel" Orientation="Horizontal" Margin="0,10,0,0"
+                                RelativePanel.Below="TimeSlider"
+                                RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                         <TextBlock x:Uid="BreakInterval" Text=""/>
                         <TextBlock Name="BreakSec" Text="10" Margin="5,0,0,0"/>
                         <TextBlock x:Uid="BSecText" Text="" Margin="5,0,0,0"/>
                     </StackPanel>
                     <Slider Name="BreakSlider" Minimum="5" Maximum="10" StepFrequency="1"
-                            TickFrequency="1" TickPlacement="Outside" Value="5" ValueChanged="BreakSlider_ValueChanged"/>
+                            TickFrequency="1" TickPlacement="Outside" Value="5" ValueChanged="BreakSlider_ValueChanged"
+                            RelativePanel.Below="BreakPanel"
+                            RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
 
                     <Button x:Uid="StartButton" Content="" Background="Green" Width="{Binding ElementName=SettingPanel, Path=ActualWidth}"
-                            Click="StartButton_Click"/>
+                            Click="StartButton_Click"
+                            RelativePanel.Below="BreakSlider"
+                            RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
 
-                    <UI:AdControl Margin="0,10,0,0"
+                    <UI:AdControl Margin="0,0,0,10"
                                   ApplicationId="3f83fe91-d6be-434d-a0ae-7351c5a997f1" AdUnitId="test"
                                   Width="300" Height="250"
-                                  ErrorOccurred="AdControl_ErrorOccurred"/>
-                </StackPanel>
+                                  ErrorOccurred="AdControl_ErrorOccurred"
+                                  RelativePanel.AlignBottomWithPanel="True"
+                                  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
+                </RelativePanel>
             </SplitView.Pane>
         </SplitView>
     </Grid>
