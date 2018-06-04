@@ -188,6 +188,9 @@ namespace CroquisPlayer
             m_CountDownTimer.Stop();
             m_Timer.Stop();
 
+            bShowTime = false;
+            ShowLeftTimeText.Visibility = Visibility.Collapsed;
+
             //! reset break timer
             m_CountDown = (int)MainPage.Current.m_BreakTime;
 
