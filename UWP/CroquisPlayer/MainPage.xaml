@@ -12,11 +12,18 @@
     <Grid>
         <SplitView IsPaneOpen="True" PanePlacement="Right" DisplayMode="Inline">
 
-            <StackPanel Orientation="Vertical">
-                <UI:AdControl Margin="0,10,0,0" Width="728" Height="90"
-                    ApplicationId="9n0bsm8ckqqq" AdUnitId="1100024403"/>
+            <RelativePanel>
+                <UI:AdControl Name="AdRect" Margin="0,10,0,0" Width="728" Height="90"
+                    ApplicationId="9n0bsm8ckqqq" AdUnitId="1100024403"
+                              AdRefreshed="AdRect_AdRefreshed"
+                              RelativePanel.AlignTopWithPanel="True"
+                              RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                              Visibility="Collapsed"/>
 
-                <ItemsControl Name="ItemCtrl" ItemsSource="{x:Bind dataCollection}" Margin="0,10,0,0">
+                <ItemsControl Name="ItemCtrl" ItemsSource="{x:Bind dataCollection}" Margin="0,10,0,0"
+                              RelativePanel.Below="AdRect"
+                              RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                              RelativePanel.AlignBottomWithPanel="True">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VariableSizedWrapGrid Orientation="Horizontal"
@@ -26,7 +33,7 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
-            </StackPanel>
+            </RelativePanel>
 
             
             <SplitView.Pane>

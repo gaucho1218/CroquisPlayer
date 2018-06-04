@@ -157,5 +157,9 @@ namespace CroquisPlayer
             }
         }
 
+        private void AdRect_AdRefreshed(object sender, RoutedEventArgs e)
+        {
+            AdRect.Visibility = Visibility.Visible;
+        }
     }
 }
