@@ -28,23 +28,26 @@ namespace CroquisPlayer
 
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs e)
         {
-            if (e.VirtualKey == Windows.System.VirtualKey.Escape)
+            if (m_Timer.IsEnabled == false)
             {
-                //! kill this page
-                Window.Current.Close();
-            }
-            else if (e.VirtualKey == Windows.System.VirtualKey.Space)
-            {
-                //! pause
-                if (bPause == true)
+                if (e.VirtualKey == Windows.System.VirtualKey.Escape)
                 {
-                    ExitPauseMode();
-                    bPause = false;
+                    //! kill this page
+                    Window.Current.Close();
                 }
-                else
+                else if (e.VirtualKey == Windows.System.VirtualKey.Space)
                 {
-                    EnterPauseMode();
-                    bPause = true;
+                    //! pause
+                    if (bPause == true)
+                    {
+                        ExitPauseMode();
+                        bPause = false;
+                    }
+                    else
+                    {
+                        EnterPauseMode();
+                        bPause = true;
+                    }
                 }
             }
         }
