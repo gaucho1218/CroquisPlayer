@@ -157,8 +157,5 @@ namespace CroquisPlayer
             }
         }
 
-        private void AdControl_ErrorOccurred(object sender, Microsoft.Advertising.WinRT.UI.AdErrorEventArgs e)
-        {
-        }
     }
 }

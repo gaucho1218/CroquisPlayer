@@ -12,16 +12,22 @@
     <Grid>
         <SplitView IsPaneOpen="True" PanePlacement="Right" DisplayMode="Inline">
 
-            <ItemsControl Name="ItemCtrl" ItemsSource="{x:Bind dataCollection}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VariableSizedWrapGrid Orientation="Horizontal"
+            <StackPanel Orientation="Vertical">
+                <UI:AdControl Margin="0,10,0,0" Width="728" Height="90"
+                    ApplicationId="3f83fe91-d6be-434d-a0ae-7351c5a997f1" AdUnitId="test"/>
+
+                <ItemsControl Name="ItemCtrl" ItemsSource="{x:Bind dataCollection}" Margin="0,10,0,0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VariableSizedWrapGrid Orientation="Horizontal"
                                                ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Auto"
                                                ScrollViewer.HorizontalScrollMode="Disabled"
                                                Margin="10"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
+
             
             <SplitView.Pane>
                 <RelativePanel Name="SettingPanel" Margin="10">
@@ -60,7 +66,6 @@
                     <UI:AdControl Margin="0,0,0,10"
                                   ApplicationId="3f83fe91-d6be-434d-a0ae-7351c5a997f1" AdUnitId="test"
                                   Width="300" Height="250"
-                                  ErrorOccurred="AdControl_ErrorOccurred"
                                   RelativePanel.AlignBottomWithPanel="True"
                                   RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
                 </RelativePanel>
