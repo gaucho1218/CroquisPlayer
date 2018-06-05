@@ -118,51 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BreakInterval.Text" xml:space="preserve">
-    <value>휴식 시간</value>
+    <value>休憩時間</value>
     <comment>Break Interval</comment>
   </data>
   <data name="TimeInterval.Text" xml:space="preserve">
-    <value>보여주는 시간</value>
+    <value>示す時間</value>
     <comment>Time Interval</comment>
   </data>
   <data name="StartButton.Content" xml:space="preserve">
-    <value>시작</value>
+    <value>スタート</value>
     <comment>Content for Start Button</comment>
   </data>
   <data name="AddText" xml:space="preserve">
-    <value>추가</value>
+    <value>追加</value>
     <comment>Add Button Text</comment>
   </data>
   <data name="BMinText.Text" xml:space="preserve">
-    <value>분</value>
+    <value>分</value>
     <comment>Break Interval Minute</comment>
   </data>
   <data name="BSecText.Text" xml:space="preserve">
-    <value>초</value>
+    <value>秒</value>
     <comment>Break Interval Second</comment>
   </data>
   <data name="TMinText.Text" xml:space="preserve">
-    <value>분</value>
+    <value>分</value>
     <comment>Time Interval Minute</comment>
   </data>
   <data name="TSecText.Text" xml:space="preserve">
-    <value>초</value>
+    <value>秒</value>
     <comment>Time Interval Second</comment>
   </data>
   <data name="ESCMessage" xml:space="preserve">
-    <value>ESC를 눌러서 종료</value>
+    <value>ESCで終了</value>
     <comment>Message for pressing ESC</comment>
   </data>
   <data name="NoImage" xml:space="preserve">
-    <value>이미지를 추가해주세요</value>
+    <value>イメージを追加してください。</value>
     <comment>message when press start button with no image</comment>
   </data>
   <data name="SpaceMessage" xml:space="preserve">
-    <value>스페이스를 눌러서 일시정지</value>
+    <value>スペースで一時停止</value>
     <comment>Message for pressing Space</comment>
   </data>
   <data name="FinishMessage" xml:space="preserve">
-    <value>끝</value>
+    <value>終了</value>
     <comment>Message for showing finish show</comment>
   </data>
 </root>
