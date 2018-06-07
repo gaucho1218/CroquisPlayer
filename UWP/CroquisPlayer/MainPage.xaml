@@ -71,7 +71,7 @@
                             RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
 
                     <UI:AdControl Margin="0,0,0,10"
-                                  ApplicationId="9N0BSM8CKQQQ" AdUnitId="1100024403"
+                                  ApplicationId="9N0BSM8CKQQQ" AdUnitId="1100024661"
                                   Width="300" Height="250"
                                   RelativePanel.AlignBottomWithPanel="True"
                                   RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
