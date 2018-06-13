@@ -17,6 +17,7 @@ namespace CroquisPlayer
 
         private int m_Index;
         private int m_CountDown;
+        private int m_LeftTime;
 
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs e)
         {
@@ -153,11 +154,15 @@ namespace CroquisPlayer
             m_ShowTimer.Stop();
 
             if (m_State != ShowState.PauseToShow)
+            {
                 ++m_Index;
+                m_CountDown = (int)MainPage.Current.m_ShowTime;
+            }
+            else
+                m_CountDown = m_LeftTime;
             m_State = ShowState.Show;
             ShowImage();
 
-            m_CountDown = (int)MainPage.Current.m_ShowTime;
             ShowLeftTimeText.Text = m_CountDown.ToString();
             ShowLeftTimeText.Visibility = Visibility.Visible;
 
@@ -217,6 +222,12 @@ namespace CroquisPlayer
 
         private void EnterPauseMode()
         {
+            //! store left time
+            if (m_State == ShowState.Show)
+                Int32.TryParse(ShowLeftTimeText.Text, out m_LeftTime);
+            else
+                m_LeftTime = (int)MainPage.Current.m_ShowTime;
+
             //! stop all timer
             m_ShowTimer.Stop();
             m_BreakTimer.Stop();
