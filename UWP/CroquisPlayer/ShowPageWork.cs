@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -16,6 +17,39 @@ namespace CroquisPlayer
 
         private int m_Index;
         private int m_CountDown;
+
+        private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs e)
+        {
+            if (e.VirtualKey == Windows.System.VirtualKey.Escape)
+            {
+                //! kill this page
+                Window.Current.Close();
+            }
+            else if (e.VirtualKey == Windows.System.VirtualKey.Space)
+            {
+                //! pause
+                if (m_State == ShowState.Pause)
+                {
+                    ExitPauseMode();
+                    m_State = ShowState.PauseToShow;
+                }
+                else if (m_State != ShowState.Hello && m_State != ShowState.Bye)
+                {
+                    EnterPauseMode();
+                    m_State = ShowState.Pause;
+                }
+            }
+            else if (e.VirtualKey == Windows.System.VirtualKey.Right && m_State == ShowState.Show)
+            {
+                if (m_Index + 1 < MainPage.Current.m_Files.Count)
+                    StartShowTime();
+                else
+                {
+                    ShowLeftTimeText.Visibility = Visibility.Collapsed;
+                    StartFinishTime();
+                }
+            }
+        }
 
         private async void ShowImage()
         {
@@ -91,6 +125,22 @@ namespace CroquisPlayer
             StartShowTime();
         }
 
+        private void StartFinishTime()
+        {
+            m_Timer.Tick += FinishTimeEnd;
+
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+
+            ShowRPanel.Children.Clear();
+            TextBlock text = new TextBlock();
+            text.FontSize = 100;
+            text.Text = resourceLoader.GetString("FinishMessage");
+            ShowRPanel.Children.Add(text);
+            m_State = ShowState.Bye;
+
+            m_Timer.Start();
+        }
+
         private void FinishTimeEnd(object sender, object e)
         {
             m_Timer.Stop();
@@ -100,10 +150,11 @@ namespace CroquisPlayer
 
         private void StartShowTime()
         {
+            m_ShowTimer.Stop();
+
             if (m_State != ShowState.PauseToShow)
                 ++m_Index;
-            else
-                m_State = ShowState.Show;
+            m_State = ShowState.Show;
             ShowImage();
 
             m_CountDown = (int)MainPage.Current.m_ShowTime;
@@ -122,20 +173,7 @@ namespace CroquisPlayer
             if (m_Index + 1 < MainPage.Current.m_Files.Count)
                 StartBreakTime();
             else
-            {
-                m_Timer.Tick += FinishTimeEnd;
-
-                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
-
-                ShowRPanel.Children.Clear();
-                TextBlock text = new TextBlock();
-                text.FontSize = 100;
-                text.Text = resourceLoader.GetString("FinishMessage");
-                ShowRPanel.Children.Add(text);
-                m_State = ShowState.Bye;
-
-                m_Timer.Start();
-            }
+                StartFinishTime();
         }
 
         private void CountDown(object sender, object e)
@@ -156,6 +194,8 @@ namespace CroquisPlayer
 
         private void StartBreakTime()
         {
+            m_State = ShowState.Break;
+
             //! set break time
             m_CountDown = (int)MainPage.Current.m_BreakTime;
 

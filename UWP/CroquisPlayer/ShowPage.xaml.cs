@@ -17,6 +17,7 @@ namespace CroquisPlayer
             Hello,
             Bye,
             Show,
+            Break,
             Pause,
             PauseToShow
         };
@@ -33,32 +34,6 @@ namespace CroquisPlayer
             m_CDText.FontSize = 250;
 
             m_Index = 0;
-        }
-
-        private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs e)
-        {
-            if (m_Timer.IsEnabled == false)
-            {
-                if (e.VirtualKey == Windows.System.VirtualKey.Escape)
-                {
-                    //! kill this page
-                    Window.Current.Close();
-                }
-                else if (e.VirtualKey == Windows.System.VirtualKey.Space)
-                {
-                    //! pause
-                    if (m_State == ShowState.Pause)
-                    {
-                        ExitPauseMode();
-                        m_State = ShowState.PauseToShow;
-                    }
-                    else if (m_State != ShowState.Hello && m_State != ShowState.Bye)
-                    {
-                        EnterPauseMode();
-                        m_State = ShowState.Pause;
-                    }
-                }
-            }
         }
 
         private void ShowPage_Loaded(object sender, RoutedEventArgs e)

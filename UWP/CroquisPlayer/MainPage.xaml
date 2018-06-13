@@ -48,7 +48,7 @@
                         <TextBlock x:Uid="TSecText" Text="" Margin="5,0,0,0"/>
                     </StackPanel>
 
-                    <Slider Name="TimeSlider" Minimum="60" Maximum="300" StepFrequency="5"
+                    <Slider Name="TimeSlider" Minimum="5" Maximum="300" StepFrequency="5"
                             TickFrequency="60" TickPlacement="Outside" Value="180" ValueChanged="TimeSlider_ValueChanged"
                             RelativePanel.Below="ShowPanel"
                             RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
