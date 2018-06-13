@@ -13,8 +13,6 @@ namespace CroquisPlayer
         private DispatcherTimer m_BreakTimer;
         private DispatcherTimer m_CountDownTimer;
         private DispatcherTimer m_Timer;
-        private bool bBeginFromPause;
-        private bool bShowTime;
 
         private int m_Index;
         private int m_CountDown;
@@ -90,7 +88,7 @@ namespace CroquisPlayer
             m_Timer.Stop();
             m_Timer.Tick -= InstructionTimeEnd;
 
-            bBeginFromPause = true;
+            m_State = ShowState.PauseToShow;
             StartShowTime();
         }
 
@@ -103,12 +101,10 @@ namespace CroquisPlayer
 
         private void StartShowTime()
         {
-            bShowTime = true;
-
-            if (bBeginFromPause == false)
+            if (m_State != ShowState.PauseToShow)
                 ++m_Index;
             else
-                bBeginFromPause = false;
+                m_State = ShowState.Show;
             ShowImage();
 
             m_CountDown = (int)MainPage.Current.m_ShowTime;
@@ -121,7 +117,6 @@ namespace CroquisPlayer
 
         private void ShowTimeEnd(object sender, object e)
         {
-            bShowTime = false;
             ShowLeftTimeText.Visibility = Visibility.Collapsed;
             m_ShowTimer.Stop();
 
@@ -148,7 +143,7 @@ namespace CroquisPlayer
             if (m_CountDown > 0)
             {
                 --m_CountDown;
-                if (bShowTime == true)
+                if (m_State == ShowState.Show)
                     ShowLeftTimeText.Text = m_CountDown.ToString();
                 else
                     m_CDText.Text = m_CountDown.ToString();
@@ -188,7 +183,7 @@ namespace CroquisPlayer
             m_CountDownTimer.Stop();
             m_Timer.Stop();
 
-            bShowTime = false;
+            m_State = ShowState.Pause;
             ShowLeftTimeText.Visibility = Visibility.Collapsed;
 
             //! reset break timer
@@ -204,7 +199,7 @@ namespace CroquisPlayer
             PauseIcon.Visibility = Visibility.Collapsed;
 
             //! starting from break mode
-            bBeginFromPause = true;
+            m_State = ShowState.PauseToShow;
             StartBreakTime();
         }
     }

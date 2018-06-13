@@ -11,18 +11,27 @@ namespace CroquisPlayer
     /// </summary>
     public sealed partial class ShowPage : Page
     {
-        private bool bPause;
+        enum ShowState
+        {
+            None,
+            Hello,
+            Bye,
+            Show,
+            Pause,
+            PauseToShow
+        };
+
+        private ShowState m_State;
         private TextBlock m_CDText;
 
         public ShowPage()
         {
             this.InitializeComponent();
 
+            m_State = ShowState.None;
             m_CDText = new TextBlock();
             m_CDText.FontSize = 250;
 
-            bPause = false;
-            bBeginFromPause = false;
             m_Index = 0;
         }
 
@@ -38,15 +47,15 @@ namespace CroquisPlayer
                 else if (e.VirtualKey == Windows.System.VirtualKey.Space)
                 {
                     //! pause
-                    if (bPause == true)
+                    if (m_State == ShowState.Pause)
                     {
                         ExitPauseMode();
-                        bPause = false;
+                        m_State = ShowState.PauseToShow;
                     }
-                    else
+                    else if (m_State != ShowState.Hello && m_State != ShowState.Bye)
                     {
                         EnterPauseMode();
-                        bPause = true;
+                        m_State = ShowState.Pause;
                     }
                 }
             }
@@ -56,6 +65,7 @@ namespace CroquisPlayer
         {
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
 
+            m_State = ShowState.Hello;
             SetupTimer();
         }
 
