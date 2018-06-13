@@ -88,7 +88,6 @@ namespace CroquisPlayer
             m_Timer.Stop();
             m_Timer.Tick -= InstructionTimeEnd;
 
-            m_State = ShowState.PauseToShow;
             StartShowTime();
         }
 
@@ -133,6 +132,7 @@ namespace CroquisPlayer
                 text.FontSize = 100;
                 text.Text = resourceLoader.GetString("FinishMessage");
                 ShowRPanel.Children.Add(text);
+                m_State = ShowState.Bye;
 
                 m_Timer.Start();
             }
