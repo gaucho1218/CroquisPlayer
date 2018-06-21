@@ -11,51 +11,36 @@ namespace CroquisPlayer
     /// </summary>
     public sealed partial class ShowPage : Page
     {
-        private bool bPause;
+        enum ShowState
+        {
+            None,
+            Hello,
+            Bye,
+            Show,
+            Break,
+            Pause,
+            PauseToShow
+        };
+
+        private ShowState m_State;
         private TextBlock m_CDText;
 
         public ShowPage()
         {
             this.InitializeComponent();
 
+            m_State = ShowState.None;
             m_CDText = new TextBlock();
             m_CDText.FontSize = 250;
 
-            bPause = false;
-            bBeginFromPause = false;
             m_Index = 0;
-        }
-
-        private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs e)
-        {
-            if (m_Timer.IsEnabled == false)
-            {
-                if (e.VirtualKey == Windows.System.VirtualKey.Escape)
-                {
-                    //! kill this page
-                    Window.Current.Close();
-                }
-                else if (e.VirtualKey == Windows.System.VirtualKey.Space)
-                {
-                    //! pause
-                    if (bPause == true)
-                    {
-                        ExitPauseMode();
-                        bPause = false;
-                    }
-                    else
-                    {
-                        EnterPauseMode();
-                        bPause = true;
-                    }
-                }
-            }
         }
 
         private void ShowPage_Loaded(object sender, RoutedEventArgs e)
         {
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
 
+            m_State = ShowState.Hello;
             SetupTimer();
         }
 
