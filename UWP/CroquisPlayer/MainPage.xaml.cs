@@ -37,6 +37,11 @@ namespace CroquisPlayer
         public MainPage()
         {
             this.InitializeComponent();
+
+            //! min size
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(500, 500));
+
+            //! application datas
             Current = this;
 
             dataCollection = new ObservableCollection<Button>();
