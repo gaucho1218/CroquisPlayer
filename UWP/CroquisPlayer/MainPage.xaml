@@ -55,10 +55,10 @@
                                 RelativePanel.Below="TimeSlider"
                                 RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                         <TextBlock x:Uid="BreakInterval" Text=""/>
-                        <TextBlock Name="BreakSec" Text="10" Margin="5,0,0,0"/>
+                        <TextBlock Name="BreakSec" Text="5" Margin="5,0,0,0"/>
                         <TextBlock x:Uid="BSecText" Text="" Margin="5,0,0,0"/>
                     </StackPanel>
-                    <Slider Name="BreakSlider" Minimum="5" Maximum="10" StepFrequency="1"
+                    <Slider Name="BreakSlider" Minimum="3" Maximum="10" StepFrequency="1"
                             TickFrequency="1" TickPlacement="Outside" Value="5" ValueChanged="BreakSlider_ValueChanged"
                             RelativePanel.Below="BreakPanel"
                             RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
