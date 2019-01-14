@@ -154,10 +154,7 @@ namespace CroquisPlayer
             m_ShowTimer.Stop();
 
             if (m_State != ShowState.PauseToShow)
-            {
-                ++m_Index;
                 m_CountDown = (int)MainPage.Current.m_ShowTime;
-            }
             else
                 m_CountDown = m_LeftTime;
             m_State = ShowState.Show;
@@ -174,8 +171,9 @@ namespace CroquisPlayer
         {
             ShowLeftTimeText.Visibility = Visibility.Collapsed;
             m_ShowTimer.Stop();
+            ++m_Index;
 
-            if (m_Index + 1 < MainPage.Current.m_Files.Count)
+            if (m_Index + 1 <= MainPage.Current.m_Files.Count)
                 StartBreakTime();
             else
                 StartFinishTime();
